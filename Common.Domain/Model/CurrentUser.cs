@@ -12,12 +12,13 @@ namespace Common.Domain.Model
     {
 
         private string _token;
-        private Dictionary<string, object> _claims;
+        private IDictionary<string, object> _claims;
 
-        public void Init(string token, Dictionary<string, object> claims)
+        public CurrentUser Init(string token, IDictionary<string, object> claims)
         {
             this._token = token;
             this._claims = claims;
+            return this;
         }
         
         public string GetToken()
@@ -25,7 +26,7 @@ namespace Common.Domain.Model
             return this._token;
         }
 
-        public Dictionary<string, object> GetClaims()
+        public IDictionary<string, object> GetClaims()
         {
             return this._claims;
         }
