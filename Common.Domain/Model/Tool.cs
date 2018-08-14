@@ -7,11 +7,14 @@ namespace Common.Domain.Model
 {
     public class Tool
     {
+        private bool canWrite;
+
         public Tool()
         {
-            this.CanWrite = true;
             this.CanRead = true;
             this.CanDelete = true;
+            this.CanEdit = true;
+            this.CanSave = true;
         }
 
         public string Name { get; set; }
@@ -20,9 +23,16 @@ namespace Common.Domain.Model
         public string Key { get; set; }
         public string ParentKey { get; set; }
         public ETypeTools Type { get; set; }
-        public Boolean CanWrite { get; set; }
         public Boolean CanRead { get; set; }
         public Boolean CanDelete { get; set; }
+        public Boolean CanEdit { get; set; }
+        public Boolean CanSave { get; set; }
+        public bool CanWrite { get => this.CanEdit && this.CanSave; set => this.SetCanWrite(value); }
 
+        private void SetCanWrite(Boolean value)
+        {
+            this.CanEdit = value;
+            this.CanSave = value;
+        }
     }
 }

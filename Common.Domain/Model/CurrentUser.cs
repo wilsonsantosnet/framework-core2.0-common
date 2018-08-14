@@ -31,6 +31,20 @@ namespace Common.Domain.Model
             return this._claims;
         }
 
+        public string GetRole()
+        {
+            var role = this._claims.Where(_ => _.Key == "role").SingleOrDefault();
+            return role.Value.IsNotNull() ? role.Value.ToString() : string.Empty;
+        }
+
+        public string GetTypeRole()
+        {
+            var typeRole = this._claims.Where(_ => _.Key == "typerole");
+            if (typeRole.IsAny())
+                return typeRole.SingleOrDefault().Value.ToString();
+            return string.Empty;
+        }
+
         public bool IsAdmin()
         {
             if (this._claims.IsNotNull())
