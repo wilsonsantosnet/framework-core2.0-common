@@ -38,6 +38,11 @@ namespace Common.API.Extensions
                     this.ConfigClaims(currentUser, tokenClear, claims.ConvertToDictionary());
                 }
             }
+            else
+            {
+                var claims = GetClaimsFromUserPrincipal(context);
+                DefineClaims(currentUser, string.Empty, claims);
+            }
             await this._next.Invoke(context);
         }
 
