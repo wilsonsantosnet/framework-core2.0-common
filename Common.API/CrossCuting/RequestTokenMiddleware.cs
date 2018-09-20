@@ -41,7 +41,7 @@ namespace Common.API.Extensions
             else
             {
                 var claims = GetClaimsFromUserPrincipal(context);
-                DefineClaims(currentUser, string.Empty, claims);
+                ConfigClaims(currentUser, string.Empty, claims.ConvertToDictionary());
             }
             await this._next.Invoke(context);
         }
