@@ -22,6 +22,7 @@ namespace Common.Domain.Model
         public string Route { get; set; }
         public string Key { get; set; }
         public string ParentKey { get; set; }
+        public bool Title { get; set; }
         public ETypeTools Type { get; set; }
         public Boolean CanRead { get; set; }
         public Boolean CanDelete { get; set; }
