@@ -17,7 +17,7 @@ namespace Common.API.Extensions
             {
                 var toolsClaim = source.Where(_ => _.Key == "tools").SingleOrDefault();
                 if (toolsClaim.IsNotNull())
-                    return JsonConvert.DeserializeObject<IEnumerable<Tool>>(toolsClaim.Value.ToString());
+                    return JsonConvert.DeserializeObject<IEnumerable<Tool>>(toolsClaim.Value.ToString()).Where(_=> !_.Title);
             }
 
             return null;
