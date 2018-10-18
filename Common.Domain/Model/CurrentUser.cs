@@ -173,16 +173,12 @@ namespace Common.Domain.Model
         
         public TS GetClaims<TS>(string key)
         {
-            if (this.IsTypeFollower())
-            {
-                var clientId = this._claims
-                    .Where(_ => _.Key.ToLower() == key.ToLower())
-                    .SingleOrDefault()
-                    .Value;
+            var clientId = this._claims
+                .Where(_ => _.Key.ToLower() == key.ToLower())
+                .SingleOrDefault()
+                .Value;
 
-                return (TS)Convert.ChangeType(clientId, typeof(TS));
-            }
-            return default(TS);
+            return (TS)Convert.ChangeType(clientId, typeof(TS));
         }
 
     }
