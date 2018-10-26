@@ -171,14 +171,18 @@ namespace Common.Domain.Model
             return default(TS);
         }
         
-        public TS GetClaims<TS>(string key)
+        public TS GetClaimByName<TS>(string name)
         {
-            var clientId = this._claims
-                .Where(_ => _.Key.ToLower() == key.ToLower())
+
+            var claim = this._claims
+                .Where(_ => _.Key.ToLower() == name.ToLower())
                 .SingleOrDefault()
                 .Value;
 
-            return (TS)Convert.ChangeType(clientId, typeof(TS));
+            if (claim.IsNull())
+                return default(TS);
+
+            return (TS)Convert.ChangeType(claim, typeof(TS));
         }
 
     }
