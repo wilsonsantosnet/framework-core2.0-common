@@ -1,3 +1,4 @@
+using Common.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -5,14 +6,14 @@ using System.Net.Mail;
 
 namespace Common.Mail
 {
-    public class EmailSendGrid
+    public class EmailSendGrid : IEmail
     {
 
         private string smtpServer;
         private string smtpPassword;
         private string smtpUser;
-        private List<MailAddress> addressFrom;
-        private List<MailAddress> addressTo;
+        private readonly List<MailAddress> addressFrom;
+        private readonly List<MailAddress> addressTo;
 
 
         public EmailSendGrid()
@@ -38,6 +39,11 @@ namespace Common.Mail
         public void AddAddressTo(string name, string email)
         {
             this.addressTo.Add(new MailAddress(email, name));
+        }
+
+        public void Send(string subject, string content)
+        {
+            throw new NotImplementedException();
         }
 
         //public void Send(String subject, String content)
