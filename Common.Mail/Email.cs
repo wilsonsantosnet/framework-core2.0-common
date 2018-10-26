@@ -15,8 +15,8 @@ namespace Common.Mail
         private string smtpPassword;
         private string smtpUser;
         private string textFormat;
-        private List<MailboxAddress> addressFrom;
-        private List<MailboxAddress> addressTo;
+        private readonly List<MailboxAddress> addressFrom;
+        private readonly List<MailboxAddress> addressTo;
        
 
         public Email()
