@@ -1,13 +1,10 @@
-﻿using Common.Domain.Enums;
+using Common.Domain.Enums;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Common.Domain.Model
 {
     public class Tool
     {
-        private bool canWrite;
 
         public Tool()
         {
@@ -22,18 +19,38 @@ namespace Common.Domain.Model
         public string Route { get; set; }
         public string Key { get; set; }
         public string ParentKey { get; set; }
-        public bool Title { get; set; }
         public ETypeTools Type { get; set; }
         public Boolean CanRead { get; set; }
         public Boolean CanDelete { get; set; }
         public Boolean CanEdit { get; set; }
         public Boolean CanSave { get; set; }
-        public bool CanWrite { get => this.CanEdit && this.CanSave; set => this.SetCanWrite(value); }
 
-        private void SetCanWrite(Boolean value)
-        {
-            this.CanEdit = value;
-            this.CanSave = value;
+        public bool CanWrite { get => this.CanEdit && this.CanSave; }
+
+
+    }
+
+    public static class ExtensionTools {
+
+        public static Tool ReadOnly(this Tool source) {
+
+            source.CanDelete = false;
+            source.CanEdit = false;
+            source.CanSave = false;
+            source.CanRead = true;
+
+            return source;
         }
+
+        public static Tool EditOnly(this Tool source)
+        {
+            source.CanDelete = false;
+            source.CanSave = false;
+            source.CanEdit = true;
+            source.CanRead = true;
+
+            return source;
+        }
+
     }
 }
