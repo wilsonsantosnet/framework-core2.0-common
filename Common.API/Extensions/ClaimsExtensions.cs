@@ -1,4 +1,4 @@
-﻿using Common.Domain.Model;
+using Common.Domain.Model;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -17,7 +17,7 @@ namespace Common.API.Extensions
             {
                 var toolsClaim = source.Where(_ => _.Key == "tools").SingleOrDefault();
                 if (toolsClaim.IsNotNull())
-                    return JsonConvert.DeserializeObject<IEnumerable<Tool>>(toolsClaim.Value.ToString()).Where(_=> !_.Title);
+                    return JsonConvert.DeserializeObject<IEnumerable<Tool>>(toolsClaim.Value.ToString());
             }
 
             return null;
