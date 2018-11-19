@@ -32,6 +32,9 @@ namespace Common.Domain.Model
 
         public static ValidationSpecificationResult Merge(this ValidationSpecificationResult source, ValidationSpecificationResult others)
         {
+             if (others.IsNull())
+                return source;
+            
             if (source.IsNotNull())
             {
                 source.IsValid = others.Errors.IsAny() ? false : source.IsValid;
