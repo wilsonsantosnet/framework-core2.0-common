@@ -24,6 +24,9 @@ namespace Common.Domain.Model
 
         public static WarningSpecificationResult Merge(this WarningSpecificationResult source, WarningSpecificationResult others)
         {
+            if (others.IsNull())
+                return source;
+            
             if (source.IsNotNull())
             {
                 source.IsValid = others.Warnings.IsAny() ? false : source.IsValid;
