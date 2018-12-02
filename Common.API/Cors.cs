@@ -31,7 +31,6 @@ namespace Common.API
             {
                 options.Filters.Add(new CorsAuthorizationFilterFactory("AllowAnyOrigin"));
                 options.Filters.Add(new CorsAuthorizationFilterFactory("AllowStackOrigin"));
-                
             });
 
         }

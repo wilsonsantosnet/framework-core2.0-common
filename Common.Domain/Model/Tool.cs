@@ -30,9 +30,11 @@ namespace Common.Domain.Model
 
     }
 
-    public static class ExtensionTools {
+    public static class ExtensionTools
+    {
 
-        public static Tool ReadOnly(this Tool source) {
+        public static Tool ReadOnly(this Tool source)
+        {
 
             source.CanDelete = false;
             source.CanEdit = false;
@@ -48,6 +50,16 @@ namespace Common.Domain.Model
             source.CanSave = false;
             source.CanEdit = true;
             source.CanRead = true;
+
+            return source;
+        }
+
+        public static Tool CreateOnly(this Tool source)
+        {
+            source.CanDelete = false;
+            source.CanSave = true;
+            source.CanEdit = false;
+            source.CanRead = false;
 
             return source;
         }
