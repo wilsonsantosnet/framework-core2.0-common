@@ -119,7 +119,7 @@ namespace Common.Domain.Model
             if (this.IsTenant())
             {
                 var subjectId = this._claims
-                    .Where(_ => _.Key.ToLower() == "sub")
+                    .Where(_ => _.Key.ToLower() == "sub" || _.Key.ToLower() == "client_sub")
                     .SingleOrDefault()
                     .Value;
 
@@ -147,7 +147,7 @@ namespace Common.Domain.Model
             if (this._claims.IsAny())
             {
                 var subjectId = this._claims
-                    .Where(_ => _.Key.ToLower() == "sub")
+                    .Where(_ => _.Key.ToLower() == "sub" || _.Key.ToLower() == "client_sub")
                     .SingleOrDefault()
                     .Value;
 
