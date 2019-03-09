@@ -142,7 +142,7 @@ public static class CommonExtensions
     }
     public static bool IsSent(this Guid value)
     {
-        return value != default;
+         return value != default(Guid);
     }
     public static bool IsSent(this short value)
     {
