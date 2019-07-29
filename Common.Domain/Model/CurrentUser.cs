@@ -14,6 +14,11 @@ namespace Common.Domain.Model
         private string _token;
         private IDictionary<string, object> _claims;
 
+        public CurrentUser()
+        {
+            this._claims = new Dictionary<string, object>();
+        }
+
         public CurrentUser Init(string token, IDictionary<string, object> claims)
         {
             this._token = token;
@@ -173,15 +178,13 @@ namespace Common.Domain.Model
         
         public TS GetClaimByName<TS>(string name)
         {
+            var claim_ = this._claims
+                .Where(_ => _.Key.ToLower() == name.ToLower());
 
-            var claim = this._claims
-                .Where(_ => _.Key.ToLower() == name.ToLower())
-                .SingleOrDefault()
-                .Value;
-
-            if (claim.IsNull())
+            if (claim_.IsNotAny())
                 return default(TS);
 
+            var claim = claim_.SingleOrDefault().Value;
             return (TS)Convert.ChangeType(claim, typeof(TS));
         }
 
