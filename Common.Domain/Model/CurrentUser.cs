@@ -1,4 +1,4 @@
-﻿using Common.Domain.Interfaces;
+using Common.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +25,7 @@ namespace Common.Domain.Model
             this._claims = claims;
             return this;
         }
-        
+
         public string GetToken()
         {
             return this._token;
@@ -57,7 +57,7 @@ namespace Common.Domain.Model
             if (this._claims.IsNotNull())
             {
                 return this._claims
-                    .Where(_ => _.Key.ToLower() == "role")
+                    .Where(_ => _.Key.ToLower() == "typerole")
                     .Where(_ => _.Value.ToString() == "admin").IsAny();
             }
             return false;
@@ -68,7 +68,7 @@ namespace Common.Domain.Model
             if (this._claims.IsNotNull())
             {
                 return this._claims
-                    .Where(_ => _.Key.ToLower() == "role")
+                    .Where(_ => _.Key.ToLower() == "typerole")
                     .Where(_ => _.Value.ToString() == "tenant").IsAny();
             }
             return false;
@@ -175,7 +175,7 @@ namespace Common.Domain.Model
             }
             return default(TS);
         }
-        
+
         public TS GetClaimByName<TS>(string name)
         {
             var claim_ = this._claims
