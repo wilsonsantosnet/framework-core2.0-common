@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.SqlServer.Query.Sql.Internal;
 using Microsoft.EntityFrameworkCore.Storage;
 using System.Linq.Expressions;
 
-namespace Score.Platform.Features.Data.Context
+namespace Common.Orm
 {
     public static class CustomDbContextOptionsBuilderExtensions
     {
