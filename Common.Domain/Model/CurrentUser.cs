@@ -163,6 +163,9 @@ namespace Common.Domain.Model
                     .Where(_ => _.Key.ToLower() == "sub" || _.Key.ToLower() == "client_sub")
                     .SingleOrDefault()
                     .Value;
+                
+                if (subjectId.IsNull())
+                    return default(TS);
 
                 return (TS)Convert.ChangeType(subjectId, typeof(TS));
             }
