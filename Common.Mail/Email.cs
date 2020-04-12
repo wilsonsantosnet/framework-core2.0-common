@@ -1,6 +1,8 @@
+using Common.Domain.Base;
 using Common.Domain.Interfaces;
 using MailKit.Net.Smtp;
 using MailKit.Security;
+using Microsoft.Extensions.Options;
 using MimeKit;
 using MimeKit.Text;
 using System;
@@ -20,17 +22,19 @@ namespace Common.Mail
         private readonly List<MailboxAddress> addressTo;
 
 
-        public Email()
+        public Email(IOptions<ConfigEmailBase> configEmail)
         {
             this.smtpPortNumber = 587;
             this.textFormat = TextFormat.Html.ToString();
             this.addressFrom = new List<MailboxAddress>();
             this.addressTo = new List<MailboxAddress>();
+            var config = configEmail.Value;
+            this.Config(config.SmtpServer, config.SmtpUser, config.SmtpPassword, Convert.ToInt32(config.SmtpPortNumber), config.TextFormat);
+
         }
 
         public void Config(string smtpServer, string smtpUser, string smtpPassword, int smtpPortNumber = 587, string textFormat = "HTML")
         {
-
             this.smtpServer = smtpServer;
             this.smtpUser = smtpUser;
             this.smtpPassword = smtpPassword;
@@ -67,7 +71,7 @@ namespace Common.Mail
                 using (var client = new SmtpClient())
                 {
                     client.ServerCertificateValidationCallback = (s, c, h, e) => true;
-                    client.Connect(this.smtpServer, this.smtpPortNumber, SecureSocketOptions.SslOnConnect);
+                    client.Connect(this.smtpServer, this.smtpPortNumber, SecureSocketOptions.StartTls);
                     client.Authenticate(this.smtpUser, this.smtpPassword);
                     client.Send(mimeMessage);
                     client.Disconnect(true);
