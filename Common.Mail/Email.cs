@@ -1,4 +1,4 @@
-using Common.Domain.Base;
+﻿using Common.Domain.Base;
 using Common.Domain.Interfaces;
 using MailKit.Net.Smtp;
 using MailKit.Security;

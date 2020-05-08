@@ -1,4 +1,4 @@
-using Common.Domain;
+﻿using Common.Domain;
 using IdentityModel.Client;
 using Newtonsoft.Json;
 using System;
