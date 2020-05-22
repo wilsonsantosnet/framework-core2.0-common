@@ -30,7 +30,6 @@ namespace Common.Mail
             this.addressTo = new List<MailboxAddress>();
             var config = configEmail.Value;
             this.Config(config.SmtpServer, config.SmtpUser, config.SmtpPassword, Convert.ToInt32(config.SmtpPortNumber), config.TextFormat);
-
         }
 
         public void Config(string smtpServer, string smtpUser, string smtpPassword, int smtpPortNumber = 587, string textFormat = "HTML")
@@ -41,7 +40,14 @@ namespace Common.Mail
             this.smtpPortNumber = smtpPortNumber;
             this.textFormat = textFormat;
         }
-
+        public void Config(ConfigEmailBase config)
+        {
+            this.smtpServer = config.SmtpServer;
+            this.smtpUser = config.SmtpUser;
+            this.smtpPassword = config.SmtpPassword;
+            this.smtpPortNumber = Convert.ToInt32(config.SmtpPortNumber);
+            this.textFormat = config.TextFormat ?? "HTML";
+        }
         public void AddAddressFrom(string name, string email)
         {
             this.addressFrom.Add(new MailboxAddress(name, email));
@@ -84,5 +90,6 @@ namespace Common.Mail
             }
         }
 
+        
     }
 }
