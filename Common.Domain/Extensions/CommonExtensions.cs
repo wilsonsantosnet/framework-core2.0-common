@@ -88,6 +88,14 @@ public static class CommonExtensions
     {
         return obj != null;
     }
+    public static bool IsDefault(this DateTime? value)
+    {
+        return value == default(DateTime?);
+    }
+    public static bool IsDefault(this DateTime value)
+    {
+        return value == default(DateTime);
+    }
     #endregion
 
     #region Nulls
