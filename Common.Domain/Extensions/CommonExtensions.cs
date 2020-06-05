@@ -84,10 +84,6 @@ public static class CommonExtensions
     {
         return value == default(int?);
     }
-    public static bool IsNotNull(this object obj)
-    {
-        return obj != null;
-    }
     public static bool IsDefault(this DateTime? value)
     {
         return value == default(DateTime?);
@@ -95,6 +91,10 @@ public static class CommonExtensions
     public static bool IsDefault(this DateTime value)
     {
         return value == default(DateTime);
+    }
+    public static bool IsNotNull(this object obj)
+    {
+        return obj != null;
     }
     #endregion
 

@@ -31,7 +31,7 @@ namespace Common.Domain.Model
 
             public void SetSecurityDateStop(DateTime now)
             {
-                 if (this.DateStop.IsDefault())
+                if (this.DateStop.IsDefault())
                     this.DateStop = now;
             }
         }
