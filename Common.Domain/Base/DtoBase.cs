@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Common.Dto
+namespace Common.Domain.Base
 {
     public abstract class DtoBase
     {
