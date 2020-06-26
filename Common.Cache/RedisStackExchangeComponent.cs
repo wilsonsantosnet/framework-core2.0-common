@@ -1,4 +1,4 @@
-﻿using Common.Domain.Base;
+using Common.Domain.Base;
 using Common.Domain.Interfaces;
 using Common.Domain.Serialization;
 using Microsoft.Extensions.Options;
@@ -11,12 +11,16 @@ namespace Common.Cache
 {
     public class RedisStackExchangeComponent : ICache
     {
+
+        static RedisStackExchangeComponent()
+        {
+            _lazyConnection = new Lazy<ConnectionMultiplexer>(() => ConnectionMultiplexer.Connect(_configCache.Default));
+        }
         private static Lazy<ConnectionMultiplexer> _lazyConnection;
 
         private static ConfigCacheConnectionStringBase _configCache;
         public static void Init(IOptions<ConfigCacheConnectionStringBase> configCache) {
             _configCache = configCache.Value;
-            _lazyConnection = new Lazy<ConnectionMultiplexer>(() => ConnectionMultiplexer.Connect(_configCache.Default));
         }
 
 
