@@ -83,10 +83,13 @@ namespace Common.Cache
 
         public bool ExistsKey(string key)
         {
+            if (!this.Enabled())
+                return false;
+
             try
             {
                 var result = this._cache.StringGet(key);
-                if (result.IsNotNull())
+                if (result.HasValue)
                     return true;
             }
             catch { }
