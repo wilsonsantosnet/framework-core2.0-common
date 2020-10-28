@@ -26,11 +26,6 @@ namespace Common.Orm
             return this.dbSet.AsNoTracking();
         }
 
-        public virtual async Task<T> GetByCache(params object[] keyValues)
-        {
-            return await this.dbSet.FindAsync(keyValues);
-        }
-
         public virtual IQueryable<T> GetAll(params Expression<Func<T, object>>[] includes)
         {
             IQueryable<T> query = ctx.Set<T>();
@@ -58,14 +53,7 @@ namespace Common.Orm
 
             return entity;
         }
-
-        public virtual T UpdateDisconnected(T entity, dynamic newValues)
-        {
-            this.dbSet.Attach(entity);
-            this.ctx.Entry(entity).CurrentValues.SetValues(newValues);
-            return entity;
-        }
-
+        
         public virtual void DetachLocal(Func<T,bool> predicate) 
         {
             var local = ctx.Set<T>().Local.Where(predicate).FirstOrDefault();

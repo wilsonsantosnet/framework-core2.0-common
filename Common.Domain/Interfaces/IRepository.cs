@@ -25,14 +25,12 @@ namespace Common.Domain.Interfaces
     }
     public interface IRepository<T>
     {
-        Task<T> GetByCache(params object[] keyValues);
         IQueryable<T> GetAll();
         IQueryable<T> GetAll(params Expression<Func<T, object>>[] includes);
         IQueryable<T> GetAllAsTracking(params Expression<Func<T, object>>[] includes);
         Task<PaginateResult<T>> PagingAndDefineFields(FilterBase filters, IQueryable<T> queryFilter);
         T Add(T entity);
         T Update(T entity);
-        T UpdateDisconnected(T entity, dynamic newValues);
         void DetachLocal(Func<T,bool> predicate);
         IEnumerable<T> Update(IEnumerable<T> entitys);
         void Remove(T entity);
